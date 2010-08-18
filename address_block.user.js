@@ -18,7 +18,8 @@
 		// promptUrl
 		var promptUrl = function(e){
 			var newUrl = prompt('URL', url);
-			if(newUrl != url){
+			alert(newUrl);
+			if(newUrl != url && newUrl != null){
 				location.href = newUrl;
 			}
 			e.stopPropagation();
