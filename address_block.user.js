@@ -7,15 +7,20 @@
 		var toggle = [];
 		var tc = 0;
 
+/*
 		// promptInfo
 		var promptInfo = function(e){
 			prompt('『title + URL』', info);
 			e.stopPropagation();
 		}
-		
+*/
+
 		// promptUrl
 		var promptUrl = function(e){
-			prompt('URL', url);
+			var newUrl = prompt('URL', url);
+			if(newUrl != url){
+				location.href = newUrl;
+			}
 			e.stopPropagation();
 		}
 		
