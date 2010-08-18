@@ -1,10 +1,4 @@
-﻿// ==UserScript==
-// @name				address_block.user.js
-// @namespace	yNk
-// @include			http://*
-// ==/UserScript==
-
-(function(){
+﻿(function(){
 	if(parent === window){
 		var url = location.href;
 		var title = document.title;
@@ -13,23 +7,28 @@
 		var toggle = [];
 		var tc = 0;
 
-		// info
+		// promptInfo
 		var promptInfo = function(e){
-			prompt("コピペ用", info);
+			prompt('『title + URL』', info);
 			e.stopPropagation();
 		}
-
+		
+		// promptUrl
+		var promptUrl = function(e){
+			prompt('URL', url);
+			e.stopPropagation();
+		}
+		
 		var span = document.createElement('span');
-		span.innerHTML = 'ニア';
+		span.innerHTML = '=>';
 		span.style.color = 'white';
 		span.style.fontWeight = 'bold';
-		span.style.backgroundColor = (url.indexOf('https') == 0)? '#FFFB00':
-'#00A37E';
+		span.style.backgroundColor = (url.indexOf('https') == 0)? '#FFFB00': '#00A37E';
 		span.style.marginLeft = '5px';
 		span.style.borderRadius = '10px';
 		span.style.opacity = '0.8';
-		span.addEventListener('click', promptInfo, false);
-		//span.addEventListener('click', function(){prompt("コピペ用", url);}, false);
+		//span.addEventListener('click', promptInfo, false);
+		span.addEventListener('click', promptUrl, false);
 
 		// url
 		if(url)toggle.push(url);
@@ -60,11 +59,9 @@
 
 			// ソート順にQueryをhtml化
 			query = '<table><tbody>';
-			query += '<tr><th colspan=2><font color=\"#ff0099\">' + title +
-'</font></th></tr>';
+			query += '<tr><th colspan=2><font color=\"#ff0099\">' + title + '</font></th></tr>';
 			for(var i = 0, len = keyList.length; len > i; i++){
-				query += '<tr><td>' + keyList[i] + '</td><td>: ' +
-queryObj[keyList[i]] + '</td></tr>';
+				query += '<tr><td>' + keyList[i] + '</td><td>: ' + queryObj[keyList[i]] + '</td></tr>';
 			}
 			query += '</tbody></table>';
 			toggle.push(query);
@@ -84,7 +81,7 @@ queryObj[keyList[i]] + '</td></tr>';
 		css.fontWeight = 'bold';
 		css.color = '#242424';
 		css.backgroundColor = (url.indexOf('https') == 0)? '#FFFB00': '#00ff99';
-		css.borderRadius = '0px 0px 15px 15px';
+		css.borderRadius = '0px 0px 15px 0px';
 		css.opacity = '0.8';
 		css.textAlign = 'left';
 		css.top = '0px';
